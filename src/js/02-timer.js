@@ -59,8 +59,9 @@ const options = {
     if (selectedDates[0].getTime() < Date.now()) {
       return alert('BAD');
     } else {
-      console.log(selectedDates[0].getTime());
-      console.log(Date.now());
+      convertMs(selectedDates[0].getTime() - Date.now());
+      //   console.log(selectedDates[0].getTime() - Date.now());
+      //   console.log(Date.now());
     }
   },
 };
@@ -74,15 +75,26 @@ function convertMs(ms) {
 
   // Remaining days
   const days = Math.floor(ms / day);
+
   // Remaining hours
   const hours = Math.floor((ms % day) / hour);
+
   // Remaining minutes
   const minutes = Math.floor(((ms % day) % hour) / minute);
+
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
+  console.log({ days, hours, minutes, seconds });
+  dataDays.textContent = days;
+  dataHours.textContent = hours;
+  dataMinutes.textContent = minutes;
+  dataSeconds.textContent = seconds;
+
   return { days, hours, minutes, seconds };
 }
+
+// console.log(convertMs());
 
 // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 // console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
