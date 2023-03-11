@@ -1,45 +1,3 @@
-// const date = new Date();
-// console.log('Date: ', date);
-
-// // Повертає день місяця від 1 до 31
-// console.log('getUTCDate(): ', date.getUTCDate());
-
-// // Повертає день тижня від 0 до 6
-// console.log('getUTCDay(): ', date.getUTCDay());
-
-// // Повертає місяць від 0 до 11
-// console.log('getUTCMonth(): ', date.getUTCMonth());
-
-// // Повертає рік з 4 цифр
-// console.log('getUTCFullYear(): ', date.getUTCFullYear());
-
-// // Повертає години
-// console.log('getUTCHours(): ', date.getUTCHours());
-
-// // Повертає хвилини
-// console.log('getUTCMinutes(): ', date.getUTCMinutes());
-
-// // Повертає секунди
-// console.log('getUTCSeconds(): ', date.getUTCSeconds());
-
-// // Повертає мілісекунди
-// console.log('getUTCMilliseconds(): ', date.getUTCMilliseconds());
-
-// ****///*** */
-
-// const date = new Date('March 16, 2030 14:25:00');
-// console.log(date);
-
-// date.setMinutes(50);
-// // "Sat Mar 16 2030 14:50:00 GMT+0200"
-
-// date.setFullYear(2040, 4, 8);
-// // "Tue May 08 2040 14:50:00 GMT+0300
-// console.log(date);
-
-// ***///*** */
-// i
-
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 require('flatpickr/dist/themes/dark.css');
@@ -49,23 +7,46 @@ const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
+const butonStart = document.querySelector('[data-start]');
+
+butonStart.addEventListener('click', getButtonStart);
+
+butonStart.setAttribute('disabled', false);
+
+let delta;
+let dataSelect;
 
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+
   onClose(selectedDates) {
+    dataSelect = selectedDates[0].getTime();
     if (selectedDates[0].getTime() < Date.now()) {
-      return alert('BAD');
+      return alert(
+        'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
+      );
     } else {
-      convertMs(selectedDates[0].getTime() - Date.now());
-      //   console.log(selectedDates[0].getTime() - Date.now());
-      //   console.log(Date.now());
+      butonStart.removeAttribute('disabled');
+      console.log(selectedDates[0]);
     }
   },
 };
-flatpickr(inputDataTime, options);
+function getButtonStart() {
+  // console.log(delta);
+
+  setInterval(() => {
+    delta = dataSelect - Date.now();
+
+    if (delta <= 1) {
+      return clearInterval(setInterval);
+    } else {
+      convertMs(delta);
+    }
+  }, 1000);
+}
 
 function convertMs(ms) {
   const second = 1000;
@@ -74,16 +55,19 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+
+  const days = addLeadingZero(Math.floor(ms / day));
 
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
 
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
 
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = addLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
 
   dataDays.textContent = days;
   dataHours.textContent = hours;
@@ -92,11 +76,7 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-setInterval(() => {}, 1000);
-
-// console.log(convertMs());
-
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+function addLeadingZero(value) {
+  return String(value).padStart(2, 0);
+}
+flatpickr(inputDataTime, options);
