@@ -85,7 +85,6 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
-  console.log({ days, hours, minutes, seconds });
   dataDays.textContent = days;
   dataHours.textContent = hours;
   dataMinutes.textContent = minutes;
@@ -93,6 +92,8 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+setInterval(() => {}, 1000);
 
 // console.log(convertMs());
 
