@@ -20,6 +20,7 @@ const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
+  minDate: 'today',
   minuteIncrement: 1,
 
   onClose(selectedDates) {
@@ -30,7 +31,7 @@ const options = {
       );
     } else {
       butonStart.removeAttribute('disabled');
-      console.log(selectedDates[0]);
+      // console.log(selectedDates[0]);
     }
   },
 };
