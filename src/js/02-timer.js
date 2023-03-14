@@ -1,4 +1,6 @@
 import flatpickr from 'flatpickr';
+import Notiflix from 'notiflix';
+
 import 'flatpickr/dist/flatpickr.min.css';
 require('flatpickr/dist/themes/dark.css');
 
@@ -19,16 +21,19 @@ let dataSelect;
 const options = {
   enableTime: true,
   time_24hr: true,
-  defaultDate: new Date(),
-  minDate: 'today',
+  // defaultDate: new Date(),
+  // minDate: 'today',
   minuteIncrement: 1,
 
   onClose(selectedDates) {
     dataSelect = selectedDates[0].getTime();
     if (selectedDates[0].getTime() < Date.now()) {
-      return alert(
+      Notiflix.Notify.failure(
         'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
       );
+      // return alert(
+      //   'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
+      // );
     } else {
       butonStart.removeAttribute('disabled');
       // console.log(selectedDates[0]);

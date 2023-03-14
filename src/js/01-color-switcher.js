@@ -6,7 +6,7 @@ const butonChangeColor = document.querySelector('[data-start]');
 const butonStopColor = document.querySelector('[data-stop]');
 const bodyChangeColor = document.querySelector('body');
 
-// butonStopColor.setAttribute('disabled', true);
+butonStopColor.setAttribute('disabled', true);
 let timerId = null;
 
 butonChangeColor.addEventListener('click', () => {
