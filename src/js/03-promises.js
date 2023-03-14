@@ -1,16 +1,23 @@
 import Notiflix from 'notiflix';
-
-// step = '1000';
-
-// .setAttribute('step = '1000');
+Notiflix.Notify.init({
+  width: '30%',
+  position: 'center-center',
+  fontSize: '15px',
+  timeout: 5000,
+  backOverlay: true,
+});
 
 const formSubmit = document.querySelector('.form  ');
 const inputDelay = document.querySelector('[name="delay"]');
 const inputStep = document.querySelector('[name="step"]');
-// const buttonSubmit = formSubmit.querySelector('.form > button');
+const inputAmount = document.querySelector('[name="amount"]');
 
 inputDelay.setAttribute('step', 500);
+inputDelay.setAttribute('min', 0);
 inputStep.setAttribute('step', 500);
+inputStep.setAttribute('min', 0);
+inputAmount.setAttribute('value', 1);
+inputAmount.setAttribute('min', 1);
 formSubmit.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
