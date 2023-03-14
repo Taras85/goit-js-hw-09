@@ -1,6 +1,14 @@
 import flatpickr from 'flatpickr';
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  width: '30%',
+  position: 'center-center',
+  fontSize: '15px',
+  timeout: 2000,
+  backOverlay: true,
+});
+
 import 'flatpickr/dist/flatpickr.min.css';
 require('flatpickr/dist/themes/dark.css');
 
@@ -21,7 +29,7 @@ let dataSelect;
 const options = {
   enableTime: true,
   time_24hr: true,
-  // defaultDate: new Date(),
+  defaultDate: new Date(),
   // minDate: 'today',
   minuteIncrement: 1,
 
@@ -29,7 +37,7 @@ const options = {
     dataSelect = selectedDates[0].getTime();
     if (selectedDates[0].getTime() < Date.now()) {
       Notiflix.Notify.failure(
-        'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
+        'Please choose a date in the future \n Будь ласка, виберіть дату в майбутньому'
       );
       // return alert(
       //   'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
@@ -86,3 +94,9 @@ function addLeadingZero(value) {
   return String(value).padStart(2, 0);
 }
 flatpickr(inputDataTime, options);
+
+// galleryList.style.display = 'grid';
+// galleryList.style.gap = '20px';
+// galleryList.style.alignItems = 'center';
+// galleryList.style.gridTemplateColumns = 'repeat(3, 30vw)';
+// galleryList.style.gridTemplateRows = 'repeat(3, 400px)';
