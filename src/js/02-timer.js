@@ -13,11 +13,18 @@ import 'flatpickr/dist/flatpickr.min.css';
 require('flatpickr/dist/themes/dark.css');
 
 const inputDataTime = document.querySelector('#datetime-picker');
+const timer = document.querySelector('.timer');
 const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
 const butonStart = document.querySelector('[data-start]');
+
+timer.style.display = 'grid';
+timer.style.gap = '20px';
+timer.style.alignItems = 'centr';
+timer.style.gridTemplateColumns = 'repeat(4, 300px)';
+// timer.style.gridTemplateRows = 'repeat(3, 400px)';
 
 butonStart.addEventListener('click', getButtonStart);
 
@@ -94,9 +101,3 @@ function addLeadingZero(value) {
   return String(value).padStart(2, 0);
 }
 flatpickr(inputDataTime, options);
-
-// galleryList.style.display = 'grid';
-// galleryList.style.gap = '20px';
-// galleryList.style.alignItems = 'center';
-// galleryList.style.gridTemplateColumns = 'repeat(3, 30vw)';
-// galleryList.style.gridTemplateRows = 'repeat(3, 400px)';
