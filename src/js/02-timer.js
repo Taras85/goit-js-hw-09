@@ -14,7 +14,7 @@ require('flatpickr/dist/themes/dark.css');
 
 const inputDataTime = document.querySelector('#datetime-picker');
 const timer = document.querySelector('.timer');
-const field = document.querySelector('.field');
+const field = document.querySelectorAll('.field');
 const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
@@ -24,10 +24,16 @@ const butonStart = document.querySelector('[data-start]');
 timer.style.display = 'grid';
 timer.style.gap = '20px';
 timer.style.alignItems = 'centr';
-timer.style.gridTemplateColumns = 'repeat(4, 100px)';
+timer.style.gridTemplateColumns = 'repeat(4, 70px)';
+timer.style.paddingTop = '20px';
+timer.style.fontSize = '20px';
 
-field.style.display = 'grid';
-field.style.justifyItems = 'center';
+field.forEach(element => {
+  element.style.display = 'grid';
+  element.style.justifyItems = 'center';
+
+  console.log(element);
+});
 
 butonStart.addEventListener('click', getButtonStart);
 
@@ -65,6 +71,7 @@ function getButtonStart() {
     delta = dataSelect - Date.now();
 
     if (delta <= 1) {
+      Notiflix.Notify.failure(' START ');
       return clearInterval(setInterval);
     } else {
       convertMs(delta);
