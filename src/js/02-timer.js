@@ -14,6 +14,7 @@ require('flatpickr/dist/themes/dark.css');
 
 const inputDataTime = document.querySelector('#datetime-picker');
 const timer = document.querySelector('.timer');
+const field = document.querySelector('.field');
 const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
@@ -23,8 +24,10 @@ const butonStart = document.querySelector('[data-start]');
 timer.style.display = 'grid';
 timer.style.gap = '20px';
 timer.style.alignItems = 'centr';
-timer.style.gridTemplateColumns = 'repeat(4, 300px)';
-// timer.style.gridTemplateRows = 'repeat(3, 400px)';
+timer.style.gridTemplateColumns = 'repeat(4, 100px)';
+
+field.style.display = 'grid';
+field.style.justifyItems = 'center';
 
 butonStart.addEventListener('click', getButtonStart);
 
