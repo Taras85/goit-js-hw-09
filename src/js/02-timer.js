@@ -69,15 +69,14 @@ function getButtonStart() {
 
   const IntId = setInterval(() => {
     delta = dataSelect - Date.now();
-    if (delta <= 5000) {
+    if (delta <= 10000) {
       dataSeconds.style.color = 'tomato';
     }
     if (delta <= 1) {
-      // dataSeconds;
       Notiflix.Report.success(
         'OFF',
         'Відлік закінчився! Вибиріть новий відлік!',
-        'OFF'
+        'OK'
       );
       dataSeconds.style.color = 'inherit';
       return clearInterval(IntId);
