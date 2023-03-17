@@ -69,8 +69,17 @@ function getButtonStart() {
 
   const IntId = setInterval(() => {
     delta = dataSelect - Date.now();
-
+    if (delta <= 5000) {
+      dataSeconds.style.color = 'tomato';
+    }
     if (delta <= 1) {
+      // dataSeconds;
+      Notiflix.Report.success(
+        'OFF',
+        'Відлік закінчився! Вибиріть новий відлік!',
+        'OFF'
+      );
+      dataSeconds.style.color = 'inherit';
       return clearInterval(IntId);
     } else {
       convertMs(delta);
