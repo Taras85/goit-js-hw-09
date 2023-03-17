@@ -22,7 +22,7 @@ inputAmount.setAttribute('min', 1);
 
 formSubmit.style.display = 'grid';
 formSubmit.style.gap = '20px';
-formSubmit.style.gridTemplateColumns = 'repeat(4, 200px)';
+formSubmit.style.gridTemplateColumns = 'repeat(auto-fill, 200px)';
 formSubmit.style.alignItems = 'end';
 
 formSubmit.addEventListener('submit', onSubmit);

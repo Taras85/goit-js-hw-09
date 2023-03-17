@@ -32,7 +32,7 @@ field.forEach(element => {
   element.style.display = 'grid';
   element.style.justifyItems = 'center';
 
-  console.log(element);
+  // console.log(element);
 });
 
 butonStart.addEventListener('click', getButtonStart);
@@ -67,12 +67,11 @@ const options = {
 function getButtonStart() {
   // console.log(delta);
 
-  setInterval(() => {
+  const IntId = setInterval(() => {
     delta = dataSelect - Date.now();
 
     if (delta <= 1) {
-      Notiflix.Notify.failure(' START ');
-      return clearInterval(setInterval);
+      return clearInterval(IntId);
     } else {
       convertMs(delta);
     }
