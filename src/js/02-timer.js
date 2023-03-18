@@ -55,9 +55,6 @@ const options = {
       Notiflix.Notify.failure(
         'Please choose a date in the future \n Будь ласка, виберіть дату в майбутньому'
       );
-      // return alert(
-      //   'Please choose a date in the future \nБудь ласка, виберіть дату в майбутньому'
-      // );
     } else {
       butonStart.removeAttribute('disabled');
       // console.log(selectedDates[0]);
@@ -66,13 +63,14 @@ const options = {
 };
 function getButtonStart() {
   // console.log(delta);
-
+  butonStart.setAttribute('disabled', false);
   const IntId = setInterval(() => {
     delta = dataSelect - Date.now();
     if (delta <= 10000) {
       dataSeconds.style.color = 'tomato';
     }
     if (delta <= 1) {
+      butonStart.removeAttribute('disabled');
       Notiflix.Report.success(
         'OFF',
         'Відлік закінчився! Вибиріть новий відлік!',
