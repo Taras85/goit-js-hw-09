@@ -7,11 +7,10 @@ Notiflix.Notify.init({
   backOverlay: true,
 });
 
-const formSubmit = document.querySelector('.form  ');
+const formSubmit = document.querySelector('.form');
 const inputDelay = document.querySelector('[name="delay"]');
 const inputStep = document.querySelector('[name="step"]');
 const inputAmount = document.querySelector('[name="amount"]');
-// const buttonSabmit = document.querySelector('.form button');
 
 inputDelay.setAttribute('step', 500);
 inputDelay.setAttribute('min', 0);
@@ -30,12 +29,9 @@ formSubmit.addEventListener('submit', onSubmit);
 function onSubmit(event) {
   event.preventDefault();
 
-  // console.log(inputDelay);
   let delay = Number(event.currentTarget[0].value);
   let step = Number(event.currentTarget[1].value);
   let amount = Number(event.currentTarget[2].value);
-
-  // console.log(delay, step, amount);
 
   for (let position = 1; position <= amount; position += 1) {
     createPromise(position, delay)
@@ -54,6 +50,7 @@ function onSubmit(event) {
 
     delay += step;
   }
+  formSubmit.reset();
 }
 
 function createPromise(position, delay) {
